@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            /* 부드러운 스크롤 효과를 위해 추가 */
+            scroll-behavior: smooth; 
+        }
+        section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 구역 구분을 위해 배경색 추가 (원치 않으시면 지우셔도 됩니다) */
+        section:nth-child(odd) {
+            background-color: #f0f8ff;
+        }
+        section:nth-child(even) {
+            background-color: #e6f2ff;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+        h1 {
+            color: skyblue;
+            font-size: 48px;
+        }
+        h2 {
+            font-size: 32px;
+        }
+        h3 {
+            font-size: 24px;
+            font-weight: 300;
+        }
+        .btns {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        .btns .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: skyblue;
+            text-align: center;
+        }
+        .btns__menu {
+            display: flex;
+            justify-content: center;
+        }
+        .btns__menu .btn {
+            font-size: 16px;
+            font-weight: 600;
+            width: 150px;
+            height: 40px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btns__menu .btn:hover {
+            background-color: white;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="btns">
+        <div class="container">
+            <div class="btns__menu">
+                <button class="btn" data-target="#home">Home</button>
+                <button class="btn" data-target="#about">About</button>
+                <button class="btn" data-target="#skills">Skills</button>
+                <button class="btn" data-target="#works">Works</button>
+                <button class="btn" data-target="#contact">Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="home">
+        <div class="wrapper">
+            <h1>Home</h1>
+            <h3>안녕하세요. 홈 페이지입니다.</h3>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="wrapper">
+            <h2>About</h2>
+            <h3>소개 영역입니다.</h3>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="wrapper">
+            <h2>Skills</h2>
+            <h3>기술 스택 영역입니다.</h3>
+        </div>
+    </section>
+
+    <section id="works">
+        <div class="wrapper">
+            <h2>Works</h2>
+            <h3>포트폴리오 영역입니다.</h3>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrapper">
+            <h2>Contact</h2>
+            <h3>연락처 영역입니다.</h3>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.btns__menu .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
