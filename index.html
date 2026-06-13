@@ -1,74 +1,354 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Minseo | Portfolio</title>
     <style>
-        body {
+        /* --- Reset & Global --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            /* 부드러운 스크롤 효과를 위해 추가 */
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #fafafa;
+            color: #111111;
             scroll-behavior: smooth; 
-        }
-        section {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* 구역 구분을 위해 배경색 추가 (원치 않으시면 지우셔도 됩니다) */
-        section:nth-child(odd) {
-            background-color: #f0f8ff;
-        }
-        section:nth-child(even) {
-            background-color: #e6f2ff;
-        }
-        .wrapper {
-            max-width: 1200px;
-            margin: auto;
-            text-align: center;
-        }
-        h1 {
-            color: skyblue;
-            font-size: 48px;
-        }
-        h2 {
-            font-size: 32px;
-        }
-        h3 {
-            font-size: 24px;
-            font-weight: 300;
-        }
-        .btns {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 10;
-        }
-        .btns .container {
-            max-width: 900px;
-            margin: auto;
-            background-color: skyblue;
-            text-align: center;
-        }
-        .btns__menu {
-            display: flex;
-            justify-content: center;
-        }
-        .btns__menu .btn {
-            font-size: 16px;
-            font-weight: 600;
-            width: 150px;
-            height: 40px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btns__menu .btn:hover {
-            background-color: white;
+            letter-spacing: -0.02em;
         }
         button {
             background-color: transparent;
             border: none;
+            cursor: pointer;
+        }
+
+        /* --- Elegant Navigation --- */
+        .btns {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .btns .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .btns__menu {
+            display: flex;
+            gap: 10px;
+        }
+        .btns__menu .btn {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #666;
+            padding: 8px 16px;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        .btns__menu .btn:hover {
+            color: #111;
+        }
+
+        /* --- Section Common --- */
+        section {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 40px 60px 40px;
+        }
+        .wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: auto;
+        }
+        
+        .section-header {
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .section-header p {
+            font-size: 28px;
+            font-weight: 400;
+            color: #111;
+        }
+
+        /* --- 1. HOME (Minimal & Statement) --- */
+        #home {
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+        #home .wrapper {
+            max-width: 1000px;
+        }
+        #home h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #111;
+            margin-bottom: 30px;
+        }
+        #home h1 span {
+            display: block;
+            font-size: 24px;
+            font-weight: 300;
+            color: #666;
+            margin-top: 20px;
+            line-height: 1.6;
+            letter-spacing: 0;
+        }
+
+        /* --- 2. ABOUT (Grid & Global Mindset) --- */
+        #about { background-color: #ffffff; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+        .about-profile {
+            background-color: #f0f0f0;
+            aspect-ratio: 4 / 5;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* [핵심] 사진 비율을 유지하면서 프레임에 꽉 채우는 속성 */
+            object-position: center; /* 사진의 중심을 기준으로 배치 */
+            filter: grayscale(10%) contrast(1.05); /* 은은하게 사이트 무드와 톤을 맞추는 필터 (선택) */
+        }
+        .about-description h3 {
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .about-description p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .lang-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #f5f5f7;
+            padding: 16px 24px;
+            border-radius: 6px;
+            border-left: 3px solid #111;
+        }
+        .lang-badge .eng-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .lang-badge .eng-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* --- 3. SKILLS (Editorial Typography Layout) --- */
+        #skills { 
+            background-color: #fafafa; 
+        }
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px 100px;
+        }
+        .skill-group h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .skill-item {
+            margin-bottom: 35px;
+        }
+        .skill-name { 
+            font-size: 18px;
+            font-weight: 600; 
+            color: #111;
+            margin-bottom: 8px;
+        }
+        .skill-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            word-break: keep-all;
+        }
+        .skill-tags {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .skill-tags span {
+            font-size: 11px;
+            background-color: #eee;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- 4. WORKS (Editorial & Mockup Grid) --- */
+        #works { 
+            background-color: #ffffff; 
+        }
+        .works-editorial {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px 40px;
+        }
+        .work-item {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        /* 목업을 감싸는 전체 박스 (은은한 그림자와 내부 여백으로 고급스럽게 연출) */
+        .work-image-box {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: #f7f7f9; /* 디바이스가 돋보이는 미니멀한 배경색 */
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.02);
+            transition: background-color 0.4s ease;
+        }
+
+        /* [핵심] 목업 이미지 스타일: 평소에는 차분하게 흑백 처리 */
+        .mockup-display {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.95);
+            opacity: 0.85;
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* 마우스를 올렸을 때(Hover) 배경이 깊어지고 목업 내부 컬러가 선명하게 살아남 */
+        .work-item:hover .work-image-box {
+            background-color: #f0f0f3;
+        }
+        .work-item:hover .mockup-display {
+            transform: scale(1.03);
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+        }
+
+        .work-meta {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .work-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .work-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+
+        @media (max-width: 768px) {
+            .works-editorial {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .work-image-box {
+                padding: 15px;
+            }
+        }
+
+        /* --- 5. CONTACT (Minimal Overlay) --- */
+        #contact {
+            background-color: #111111;
+            color: #ffffff;
+            min-height: 70vh;
+        }
+        #contact .section-header h2 { color: #666; }
+        #contact .section-header p { color: #fff; }
+        .contact-wrap {
+            margin-top: 60px;
+        }
+        .contact-wrap p {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+        .contact-email {
+            font-size: 36px;
+            font-weight: 300;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity 0.3s;
+        }
+        .contact-email:hover {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #home h1 { font-size: 48px; }
+            .about-grid, .skills-container, .works-editorial {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .contact-email { font-size: 24px; }
         }
     </style>
 </head>
@@ -76,6 +356,7 @@
 
     <div class="btns">
         <div class="container">
+            <div class="nav-logo">MINSEO J.</div>
             <div class="btns__menu">
                 <button class="btn" data-target="#home">Home</button>
                 <button class="btn" data-target="#about">About</button>
@@ -88,36 +369,136 @@
 
     <section id="home">
         <div class="wrapper">
-            <h1>Minseo</h1>
-            <h3>안녕하세요</h3>
+            <h1>
+                MINSEO<br>
+                Visual & Interactive Designer
+                <span>
+                    감각적인 레이아웃과 감성적인 인터랙션을 통해 <br>
+                    사용자 경험을 확장하는 디자이너이자 개발자입니다
+                </span>
+            </h1>
         </div>
     </section>
 
     <section id="about">
         <div class="wrapper">
-            <h2>About</h2>
-            <h3>소개 영역입니다.</h3>
+            <div class="section-header">
+                <h2>01 / About</h2>
+                <p>Identity & Global Mindset</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-profile">
+                    <img src="프로필사진.jpg" alt="Minseo Jeong Profile" class="profile-img">
+                </div>
+                <div class="about-description">
+                    <h3>클라이언트의 언어를 디자인으로 번역합니다</h3>
+                    <p>
+                        좋은 디자인은 감각만으로 완성되지 않는다고 생각합니다<br>
+                        시장과 사용자를 관찰하며 브랜드마다 다른 해답을 찾고 그에 맞는 경험을 설계합니다 <br>
+                        작은 디테일까지 놓치지 않는 집요함으로 더 나은 결과를 만들어갑니다
+                    </p>
+                    
+                    <div class="lang-badge">
+                        <span class="eng-title">Global Communication Available</span>
+                        <span class="eng-desc">| 시각디자인과 / 영어소통가능 </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="skills">
         <div class="wrapper">
-            <h2>Skills</h2>
-            <h3>기술 스택 영역입니다.</h3>
+            <div class="section-header">
+                <h2>02 / Expertise</h2>
+                <p>Capabilities & Tech Stack</p>
+            </div>
+            <div class="skills-container">
+                
+                <div class="skill-group">
+                    <h3>Design & Structure</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">UI / UX Design</div>
+                        <div class="skill-desc">Figma를 기반으로 정교한 컴포넌트 시스템을 설계하고 유저 시나리오에 맞춘 직관적인 와이어프레임을 구축합니다.</div>
+                        <div class="skill-tags">
+                            <span>Figma</span><span>Wireframing</span><span>Prototyping</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Visual & Editorial Logic</div>
+                        <div class="skill-desc">브랜드의 무드에 맞는 컬러 시스템(Color System)과 그리드 레이아웃을 논리적으로 기획하여 일관성 있는 비주얼을 도출합니다.</div>
+                        <div class="skill-tags">
+                            <span>Color System</span><span>Grid Layout</span><span>Brand Renewal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-group">
+                    <h3>Development Stack</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">HTML5 / CSS3</div>
+                        <div class="skill-desc">웹 표준을 준수하는 시맨틱 마크업을 지향하며, 미디어 쿼리를 활용해 다양한 디바이스에 완벽히 대응하는 반응형 레이아웃을 구현합니다.</div>
+                        <div class="skill-tags">
+                            <span>Semantic Web</span><span>Responsive Web</span><span>Flex/Grid</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-desc">DOM 요소를 유연하게 제어하여 동적인 웹 인터랙션을 구현하고, 사용자 중심의 부드러운 스크롤 효과 및 이벤트를 처리합니다.</div>
+                        <div class="skill-tags">
+                            <span>ES6+</span><span>DOM Manipulation</span><span>Interactions</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <section id="works">
+   <section id="works">
         <div class="wrapper">
-            <h2>Works</h2>
-            <h3>포트폴리오 영역입니다.</h3>
+            <div class="section-header">
+                <h2>03 / Selected Works</h2>
+                <p>Project Archive</p>
+            </div>
+            <div class="works-editorial">
+                
+                <a href="#" class="work-item" onclick="return false;">
+                    <div class="work-image-box">
+                        <img src="에어비앤비.png" alt="Airbnb Renewal Mockup" class="mockup-display">
+                    </div>
+                    <div class="work-meta">Brand Identity & Editorial / 2026</div>
+                    <div class="work-title">Airbnb Brand Color Renewal Project</div>
+                    <div class="work-desc">기존 브랜드 아이덴티티를 심층 분석하고 시각적 피로도를 낮춘 정제된 'Muted Coral' 컬러 시스템을 도출하여 논리적 구조를 제안한 디자인 과제입니다</div>
+                </a>
+                
+                <a href="#" class="work-item" onclick="return false;">
+                    <div class="work-image-box">
+                        <img src="가치보카.png" alt="Interface Design Mockup" class="mockup-display">
+                    </div>
+                    <div class="work-meta">UI/UX Design& Research / 2026</div>
+                    <div class="work-title">Interactive Interface Design Studio</div>
+                    <div class="work-desc">앱인토스를 기반으로 유저인터페이스를 설계하고 디자인하였습니다</div>
+                </a>
+
+            </div>
         </div>
     </section>
 
     <section id="contact">
         <div class="wrapper">
-            <h2>Contact</h2>
-            <h3>0125jung@naver.com</h3>
+            <div class="section-header">
+                <h2>04 / Contact</h2>
+                <p>Get In Touch</p>
+            </div>
+            <div class="contact-wrap">
+                <p>새로운 가능성과 협업에 대해 이야기 나눌 준비가 되어 있습니다.</p>
+                <a href="mailto:0125jung@naver.com" class="contact-email">0125jung@naver.com</a>
+            </div>
         </div>
     </section>
 
